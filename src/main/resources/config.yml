@@ -1,0 +1,11 @@
+default: # default 명은 바꾸지 말아주세요
+  spawn:
+    x: 1
+    y: 2
+    z: 3
+게임이름:
+  spawn:
+    x: 1
+    y: 2
+    z: 3
+
