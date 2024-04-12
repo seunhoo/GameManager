@@ -15,18 +15,21 @@ public class MessageModule {
     private final HangulModule hangulModule = new HangulModule();
 
     public void logInfo(String arg){
-        GameManager.log.info(arg);
+        GameManager.log.info(GameManagerMessage.DEFAULT_MESSAGE.getMessage() +arg);
     }
     public void sendPlayer(Player player, String... arg) {
-        player.sendMessage(makeString(arg));
+        player.sendMessage(GameManagerMessage.DEFAULT_MESSAGE.getMessage() + makeString(arg));
     }
 
     public void sendPlayer(CommandSender player, String... arg) {
+        player.sendMessage(GameManagerMessage.DEFAULT_MESSAGE.getMessage() + makeString(arg));
+    }
+    public void sendPlayerNoPrefix(CommandSender player, String... arg) {
         player.sendMessage(makeString(arg));
     }
 
     public void sendPlayer(Player player, String word, HangulModule.Josa josa, String... arg) {
-        player.sendMessage(hangulModule.getJosa(word, josa) + makeString(arg));
+        player.sendMessage(GameManagerMessage.DEFAULT_MESSAGE.getMessage() +hangulModule.getJosa(word, josa) + makeString(arg));
     }
 
     public void sendTitle(Player player, String main, String sub, Integer fadeIn, Integer duration, Integer fadeOut) {
@@ -38,11 +41,11 @@ public class MessageModule {
     }
 
     public void broadcastMessage(String... arg) {
-        Bukkit.broadcastMessage(makeString(arg));
+        Bukkit.broadcastMessage(GameManagerMessage.DEFAULT_MESSAGE.getMessage() +makeString(arg));
     }
 
     public void broadcastMessage(HangulModule.Josa josa, String... arg) {
-        Bukkit.broadcastMessage(makeString(arg));
+        Bukkit.broadcastMessage(GameManagerMessage.DEFAULT_MESSAGE.getMessage() + makeString(arg));
     }
 
     public void clearChat(Player player) {

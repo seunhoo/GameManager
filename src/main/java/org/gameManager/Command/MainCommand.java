@@ -27,13 +27,13 @@ public class MainCommand {
         }
     }
     private void explainCommand(CommandSender sender){
-        EnumSet<GameManagerMessage> range = EnumSet.range(GameManagerMessage.INFO_COMMAND_EXPLAIN1, GameManagerMessage.INFO_COMMAND_EXPLAIN16);
+        EnumSet<GameManagerMessage> range = EnumSet.range(GameManagerMessage.INFO_COMMAND_EXPLAIN1, GameManagerMessage.INFO_COMMAND_EXPLAIN17);
         for (GameManagerMessage gameManagerMessage : range) {
-            messageModule.sendPlayer(sender,gameManagerMessage.getMessage());
+            messageModule.sendPlayerNoPrefix(sender,gameManagerMessage.getMessage());
         }
     }
     private void nowCommand(CommandSender sender){
-        messageModule.sendPlayer(sender,GameManagerMessage.INFO_MESSAGE_GAME_NOW.getMessage());
-        messageModule.sendPlayer(sender, GameData.nowGame);
+        messageModule.sendPlayerNoPrefix(sender,GameManagerMessage.INFO_MESSAGE_GAME_NOW.getMessage());
+        messageModule.sendPlayerNoPrefix(sender, GameData.nowGame);
     }
 }

@@ -39,7 +39,7 @@ public class GameCommand {
         }
     }
     public void gameSetSpawn(CommandSender sender, String[] data){
-        if(data.length == 1){
+        if(data.length == 1 || data.length == 2){
             gameModule.gameSetSpawn(sender,data);
         }else{
             messageModule.sendPlayer(sender, GameManagerMessage.ERROR_WRONG_COMMAND.getMessage());
