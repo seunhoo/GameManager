@@ -27,7 +27,7 @@ public class GameModule {
     public void reloadGameInfo() {
         FileConfiguration config = configModule.getConfig(configFile);
         GameData.gameInfo.clear();
-        GameData.nowGame = GameManagerMessage.DEFAULT_SPAWN.getMessage();
+        GameData.nowGame = "";
         for (String gameName : Objects.requireNonNull(config.getConfigurationSection("")).getKeys(false)) {
             GameData.gameInfo.add(gameName);
             double x = config.getDouble(gameName + spawnX, 0);
@@ -80,12 +80,16 @@ public class GameModule {
         }
         GameData.isGame = false;
         SpawnInfo spawnInfo = GameData.gameSpawnInfo.get(GameData.nowGame);
-//        for (Map.Entry<UUID, Player> playerEntry : GameData.playerInfo.entrySet()) {
-        playerModule.getServerPlayers().forEach(player -> {
-            World world = player.getWorld();
-            player.teleport(new Location(world, spawnInfo.getX(), spawnInfo.getY(), spawnInfo.getZ()));
-            messageModule.sendPlayer(player, GameManagerMessage.GAME_STOP_MESSAGE.getMessage());
-        });
+        if(spawnInfo == null){
+            messageModule.sendPlayer(sender,GameManagerMessage.ERROR_GAME_IS_NOT_EXITS.getMessage());
+        }else{
+            playerModule.getServerPlayers().forEach(player -> {
+                World world = player.getWorld();
+                player.teleport(new Location(world, spawnInfo.getX(), spawnInfo.getY(), spawnInfo.getZ()));
+                messageModule.sendPlayer(player, GameManagerMessage.GAME_STOP_MESSAGE.getMessage());
+                GameData.nowGame = "";
+            });
+        }
     }
 
     public void gameDelete(CommandSender sender, String[] data) {
@@ -123,6 +127,5 @@ public class GameModule {
         GameData.gameInfo.forEach(gameName -> {
             messageModule.sendPlayer(sender, ChatColor.AQUA + gameName);
         });
-        messageModule.sendPlayer(sender, GameManagerMessage.INFO_MESSAGE_GAME_LIST.getMessage());
     }
 }

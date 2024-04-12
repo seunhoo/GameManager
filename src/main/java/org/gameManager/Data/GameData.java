@@ -10,6 +10,6 @@ public class GameData {
     public static HashMap<String, SpawnInfo> gameSpawnInfo = new LinkedHashMap<>();
     public static List<String> gameInfo = new ArrayList<>();
     public static HashMap<UUID, Player> playerInfo = new LinkedHashMap<>();
-    public static String nowGame = "default";
+    public static String nowGame = "";
     public static Boolean isGame = false;
 }
