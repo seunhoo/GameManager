@@ -11,6 +11,7 @@ import org.gameManager.Data.GameData;
 import org.gameManager.Data.Info.SpawnInfo;
 import org.gameManager.Enum.GameManagerMessage;
 
+import javax.swing.text.Style;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -76,7 +77,7 @@ public class GameModule {
                 messageModule.sendPlayer(sender, GameManagerMessage.ERROR_GAME_IS_NOT_EXITS_SPAWN.getMessage());
                 return;
             }
-            SpawnInfo spawnInfo = GameData.gameSpawnInfo.get(GameManagerMessage.DEFAULT_SPAWN.getMessage());
+            SpawnInfo spawnInfo = GameData.gameSpawnInfo.get(gameName);
             if (spawnInfo == null) {
                 messageModule.sendPlayer(sender, GameManagerMessage.ERROR_GAME_IS_NOT_EXITS.getMessage());
             } else {
