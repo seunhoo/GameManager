@@ -27,8 +27,7 @@ public class MainCommand {
         }
     }
     private void explainCommand(CommandSender sender){
-        EnumSet<GameManagerMessage> range = EnumSet.range(GameManagerMessage.INFO_COMMAND_EXPLAIN1, GameManagerMessage.INFO_COMMAND_EXPLAIN17);
-        for (GameManagerMessage gameManagerMessage : range) {
+        for (GameManagerMessage gameManagerMessage : EnumSet.range(GameManagerMessage.INFO_COMMAND_EXPLAIN1, GameManagerMessage.INFO_COMMAND_EXPLAIN17)) {
             messageModule.sendPlayerNoPrefix(sender,gameManagerMessage.getMessage());
         }
     }

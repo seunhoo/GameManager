@@ -68,7 +68,7 @@ public enum GameManagerMessage {
     private static final Map<String, GameManagerMessage> messageInfoMap = new HashMap<>();
 
     static {
-        for (GameManagerMessage gameManagerMessage : GameManagerMessage.values()) {
+        for (GameManagerMessage gameManagerMessage : EnumSet.range(COMMAND_CREATE, COMMAND_NOW)) {
             messageInfoMap.put(gameManagerMessage.message, gameManagerMessage);
         }
     }
