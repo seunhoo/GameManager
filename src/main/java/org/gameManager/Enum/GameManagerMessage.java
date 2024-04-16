@@ -5,7 +5,7 @@ import org.bukkit.ChatColor;
 import java.util.*;
 
 public enum GameManagerMessage {
-    DEFAULT_MESSAGE(ChatColor.GOLD + "" + ChatColor.BOLD + "[GM] " + ChatColor.RESET),
+    DEFAULT_MESSAGE(ChatColor.GOLD + "" + ChatColor.BOLD + "[GameManager] " + ChatColor.RESET),
     // Game Message
     GAME_CREATE_MESSAGE(ChatColor.AQUA + "게임이 생성 되었습니다."),
     GAME_START_MESSAGE(ChatColor.AQUA + "게임이 시작 되었습니다."),
