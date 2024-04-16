@@ -5,7 +5,7 @@ import org.bukkit.ChatColor;
 import java.util.*;
 
 public enum GameManagerMessage {
-    DEFAULT_MESSAGE(ChatColor.BLACK + "【GM】 | "),
+    DEFAULT_MESSAGE(ChatColor.GOLD + "" + ChatColor.BOLD + "[GM] " + ChatColor.RESET),
     // Game Message
     GAME_CREATE_MESSAGE(ChatColor.AQUA + "게임이 생성 되었습니다."),
     GAME_START_MESSAGE(ChatColor.AQUA + "게임이 시작 되었습니다."),
@@ -46,7 +46,7 @@ public enum GameManagerMessage {
     COMMAND_NOW("게임확인"),
 
     ERROR("오류"),
-    ERROR_WRONG_COMMAND(ChatColor.RED + "잘못 된 명령입니다."),
+    ERROR_WRONG_COMMAND(ChatColor.RED + "잘못된 명령입니다."),
     ERROR_GAME_IS_NOT_START(ChatColor.RED + "진행중인 게임이 없습니다."),
     ERROR_GAME_IS_ALREADY_START(ChatColor.RED + "게임이 이미 진행중입니다."),
     ERROR_GAME_IS_NOT_EXITS(ChatColor.RED + "게임이 존재하지 않습니다."),
