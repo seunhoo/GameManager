@@ -23,9 +23,10 @@ public class GameModule {
     private final PlayerModule playerModule = new PlayerModule();
     private final String configFile = "config.yml";
 
-    private final String spawnX = ".spawn.x";
-    private final String spawnY = ".spawn.y";
-    private final String spawnZ = ".spawn.z";
+    private final String spawn = ".spawn";
+    private final String x = ".x";
+    private final String y = ".y";
+    private final String z = ".z";
 
     public void reloadGameInfo() {
         FileConfiguration config = configModule.getConfig(configFile);
@@ -33,15 +34,15 @@ public class GameModule {
         GameData.nowGame = "";
         for (String gameName : Objects.requireNonNull(config.getConfigurationSection("")).getKeys(false)) {
             GameData.gameInfo.add(gameName);
-            double x = config.getDouble(gameName + spawnX, 0);
-            double y = config.getDouble(gameName + spawnY, 0);
-            double z = config.getDouble(gameName + spawnZ, 0);
-            GameData.gameSpawnInfo.put(gameName, new SpawnInfo(x, y, z));
+            double X = config.getDouble(gameName + spawn + x, 0);
+            double Y = config.getDouble(gameName + spawn + y, 0);
+            double Z = config.getDouble(gameName + spawn + z, 0);
+            GameData.gameSpawnInfo.put(gameName, new SpawnInfo(X,Y,Z));
             playerModule.getServerPlayers().forEach(player -> {
                 String playerName = player.getName();
-                double playerX = config.getDouble(gameName + "." + playerName + spawnX, 0);
-                double playerY = config.getDouble(gameName + "." + playerName + spawnY, 0);
-                double playerZ = config.getDouble(gameName + "." + playerName + spawnZ, 0);
+                double playerX = config.getDouble(gameName + "." + playerName + x, 0);
+                double playerY = config.getDouble(gameName + "." + playerName + y, 0);
+                double playerZ = config.getDouble(gameName + "." + playerName + z, 0);
                 if (playerX != 0 && playerY != 0 && playerZ != 0) {
                     HashMap<String, String> map = new LinkedHashMap<>();
                     map.put(gameName, playerName);
@@ -57,9 +58,9 @@ public class GameModule {
             messageModule.sendPlayer(sender);
         } else {
             FileConfiguration config = configModule.getConfig(configFile);
-            config.set(gameName + spawnX, 0);
-            config.set(gameName + spawnY, 0);
-            config.set(gameName + spawnZ, 0);
+            config.set(gameName + spawn + x, 0);
+            config.set(gameName + spawn + y, 0);
+            config.set(gameName + spawn + z, 0);
             configModule.saveConfig(config, configFile);
             messageModule.sendPlayer(sender, ChatColor.WHITE + gameName + " | " + GameManagerMessage.GAME_CREATE_MESSAGE.getMessage());
             reloadGameInfo();
@@ -93,6 +94,7 @@ public class GameModule {
                     }
                     player.teleport(location);
                 });
+                GameData.nowGame = gameName;
                 GameData.isGame = true;
                 messageModule.broadcastMessage(ChatColor.WHITE + gameName + " | " + GameManagerMessage.GAME_START_MESSAGE.getMessage());
             }
@@ -141,13 +143,13 @@ public class GameModule {
             Location location = player.getLocation();
             FileConfiguration config = configModule.getConfig(configFile);
             if (data.length >= 2) {
-                config.set(gameName + "." + data[1] + spawnX, location.getX());
-                config.set(gameName + "." + data[1] + spawnY, location.getY());
-                config.set(gameName + "." + data[1] + spawnZ, location.getZ());
+                config.set(gameName + "." + data[1] + x, location.getX());
+                config.set(gameName + "." + data[1] + y, location.getY());
+                config.set(gameName + "." + data[1] + z, location.getZ());
             } else {
-                config.set(gameName + spawnX, location.getX());
-                config.set(gameName + spawnY, location.getY());
-                config.set(gameName + spawnZ, location.getZ());
+                config.set(gameName + spawn +  x, location.getX());
+                config.set(gameName + spawn + y, location.getY());
+                config.set(gameName + spawn + z, location.getZ());
             }
             configModule.saveConfig(config, configFile);
             messageModule.sendPlayer(sender, ChatColor.WHITE + gameName + " | " + GameManagerMessage.GAME_SET_SPAWN_MESSAGE.getMessage());
