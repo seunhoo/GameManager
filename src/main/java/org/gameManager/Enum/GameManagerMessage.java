@@ -41,8 +41,8 @@ public enum GameManagerMessage {
     COMMAND_START("게임시작"),
     COMMAND_STOP("게임종료"),
     COMMAND_SET_SPAWN("게임스폰설정"),
+    COMMAND_HELP("게임도움말"),
     COMMAND_GAME_LIST("게임목록"),
-    COMMAND_EXPLAIN("게임설명"),
     COMMAND_NOW("게임확인"),
 
     ERROR("오류"),
